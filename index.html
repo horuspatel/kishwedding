@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah & John's Wedding</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+        }
+        .image-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-left, .image-right {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+        }
+        .image-left {
+            left: -100%;
+            background-image: url('https://drive.google.com/uc?id=1nncUmPKPCA6pqSaHFOGgSqUhIPrCyrdJ');
+        }
+        .image-right {
+            right: -100%;
+            background-image: url('https://picsum.photos/800/1200?random=2')
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        p {
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            opacity: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .nav a:hover {
+            color: #f1c40f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <div class="image-left"></div>
+        </div>
+        <div class="image-container">
+            <div class="image-right"></div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Sarah & John</h1>
+        <p>We're Getting Married!</p>
+        <p>August 15, 2024</p>
+    </div>
+    <div class="nav">
+        <a href="#" id="homeLink">Home</a>
+        <a href="gift.html" id="giftLink">Our Gift</a>
+        <a href="#" id="rsvpLink">RSVP</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
+            gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
+            gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
+            gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
+        });
+    </script>
+</body>
+</html>
