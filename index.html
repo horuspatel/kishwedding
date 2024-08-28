@@ -12,6 +12,8 @@
             font-family: 'Arial', sans-serif;
             height: 100%;
             overflow: hidden;
+            background-color: #fff;
+            position: relative;
         }
         .container {
             display: flex;
@@ -46,22 +48,25 @@
             color: #fff;
             z-index: 10;
             opacity: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
         }
         h1 {
-            font-size: 3.5em;
+            font-size: 4em;
             margin-bottom: 0.5em;
-            font-weight: 300;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            color: #f40000;
         }
         p {
-            font-size: 1.8em;
+            font-size: 2em;
             margin-bottom: 1em;
             font-weight: 300;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            color: #fff;
         }
         .nav {
             position: absolute;
@@ -71,16 +76,74 @@
             z-index: 10;
         }
         .nav a {
-            color: #fff;
+            color: #f40000;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 1.2em;
+            font-size: 1.5em;
+            font-weight: bold;
             opacity: 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
+            padding: 10px 15px;
+            background-color: #fff;
+            border-radius: 5px;
         }
         .nav a:hover {
-            color: #f1c40f;
+            color: #fff;
+            background-color: #f40000;
+            text-shadow: none;
+        }
+        /* Style for tiny GIFs */
+        .tiny-gif {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+            p {
+                font-size: 1.5em;
+            }
+            .nav a {
+                font-size: 1.2em;
+                margin: 0 10px;
+                padding: 8px 12px;
+            }
+            .content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .nav a {
+                font-size: 1em;
+                margin: 0 5px;
+                padding: 6px 10px;
+            }
+            .content {
+                padding: 20px;
+            }
+            .container {
+                flex-direction: column;
+            }
+            .image-container {
+                height: 50%;
+            }
+            .nav {
+                bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -103,12 +166,56 @@
         <a href="gift.html" id="giftLink">Our Gift</a>
     </div>
 
+    <!-- Tiny GIFs -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
             gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
             gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
             gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
+
+            function createGif() {
+                const gifElement = document.createElement('img');
+                gifElement.src = 'https://horuspatel.github.io/kishwedding/chickenwing.gif';
+                gifElement.className = 'tiny-gif';
+                document.body.appendChild(gifElement);
+
+                // Randomize position around the edges
+                const position = Math.floor(Math.random() * 4);
+                const offset = Math.random() * 100;
+
+                switch (position) {
+                    case 0: // Top
+                        gifElement.style.top = `${offset}vh`;
+                        gifElement.style.left = `-50px`;
+                        break;
+                    case 1: // Bottom
+                        gifElement.style.bottom = `${offset}vh`;
+                        gifElement.style.right = `-50px`;
+                        break;
+                    case 2: // Left
+                        gifElement.style.left = `${offset}vw`;
+                        gifElement.style.top = `-50px`;
+                        break;
+                    case 3: // Right
+                        gifElement.style.right = `${offset}vw`;
+                        gifElement.style.bottom = `-50px`;
+                        break;
+                }
+
+                // Animate GIF appearance and disappearance
+                gsap.to(gifElement, { opacity: 1, duration: 0.5, x: 60 });
+                gsap.to(gifElement, { opacity: 0, delay: 1.5, duration: 0.5, x: 120, onComplete: () => gifElement.remove() });
+            }
+
+            // Function to continuously create GIFs
+            function startGifLoop() {
+                setInterval(() => {
+                    createGif();
+                }, 500); // Creates a new GIF every 0.5 seconds
+            }
+
+            startGifLoop(); // Start the loop after initial animations
         });
     </script>
 </body>
