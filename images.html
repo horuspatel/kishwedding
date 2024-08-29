@@ -10,43 +10,74 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #fff;
+            background-color: rgba(240, 248, 255, 0.95); /* Almost white blue background color */
             color: #333;
             height: 100%;
+            overflow: hidden;
+            position: relative;
         }
-        .header {
-            background-color: #f40000;
-            padding: 20px;
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
         }
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-            text-align: center;
-            flex: 1;
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: black;
+            transition: all 0.3s ease;
         }
-        .home-button {
-            padding: 10px 20px;
-            background-color: #fff;
-            color: #f40000;
+        .menu-icon.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-icon.open div:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-icon.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        .nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding-top: 60px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        .nav.open {
+            transform: translateX(0);
+        }
+        .nav a {
+            color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2em;
+            margin: 15px 0;
+            font-size: 1.5em;
             font-weight: bold;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s ease;
-            margin-right: auto; /* Aligns the button to the left */
+            transition: color 0.3s ease;
         }
-        .home-button:hover {
-            background-color: #d00000;
-            color: white;
+        .nav a:hover {
+            color: #f40000;
         }
         .upload-widget {
             margin: 20px auto;
             text-align: center;
+            z-index: 10;
+            position: relative;
         }
         .container {
             padding: 20px;
@@ -55,6 +86,8 @@
             align-items: center;
             height: 80vh;
             overflow-y: auto;
+            z-index: 10;
+            position: relative;
         }
         .image-gallery {
             display: grid;
@@ -73,13 +106,20 @@
 </head>
 <body>
 
-<div class="header">
-    <a href="index.html" class="home-button">Home</a>
-    <h1>Upload and View Images</h1>
+<div class="menu-icon" id="menuIcon">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<div class="nav" id="navMenu">
+    <a href="index.html" id="homeLink">Home</a>
+    <a href="gift.html" id="giftLink">Our Gift</a>
+    <a href="images.html" id="imagesLink">Upload Images</a> <!-- Current Page Link -->
 </div>
 
 <div class="upload-widget">
-    <input type="hidden" role="uploadcare-uploader" data-public-key="8408c4c77a7b4868e631" data-images-only />
+    <input type="hidden" id="uploadcare-uploader" role="uploadcare-uploader" data-public-key="8408c4c77a7b4868e631" data-images-only />
 </div>
 
 <div class="container">
@@ -87,12 +127,23 @@
 </div>
 
 <script>
+    const menuIcon = document.getElementById('menuIcon');
+    const navMenu = document.getElementById('navMenu');
+
+    menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('open');
+        navMenu.classList.toggle('open');
+    });
+
     // Initialize Uploadcare widget
     const widget = uploadcare.Widget('[role=uploadcare-uploader]');
 
     // When an image is uploaded, display it at the top of the gallery
     widget.onUploadComplete(info => {
         displayImage(info.cdnUrl);
+
+        // Reinitialize the widget to ensure it remains visible and functional
+        widget.value(null); // Reset the widget to its initial state
     });
 
     // Function to display an image at the top of the gallery
