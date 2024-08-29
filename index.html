@@ -253,7 +253,7 @@
                 document.body.appendChild(imageElement);
     
                 gsap.to(imageElement, { bottom: '-20px', duration: 3, ease: 'power2.out' });
-                gsap.to(imageElement, { delay: 4, duration: 1.5, bottom: '-100px', ease: 'power2.in', onComplete: () => imageElement.remove() });
+                gsap.to(imageElement, { delay: 3, duration: 1.5, bottom: '-100px', ease: 'power2.in', onComplete: () => imageElement.remove() });
             }
     
             function addStaticGif() {
@@ -261,7 +261,7 @@
                 staticGif.src = 'https://horuspatel.github.io/kishwedding/Images/Horse.gif'; // Replace with your static GIF URL
                 staticGif.style.position = 'fixed';
                 staticGif.style.zIndex = '100';
-                staticGif.style.right = '50px';
+                staticGif.style.right = '80px';
                 staticGif.style.bottom = '10px';
                 staticGif.style.width = '100px';
                 document.body.appendChild(staticGif);
@@ -278,7 +278,7 @@
     
                 setInterval(() => {
                     createImagePopUpLeft();
-                }, 6000);
+                }, 5000);
     
                 addStaticGif();
             }
@@ -292,3 +292,4 @@
         
 </body>
 </html>
+
