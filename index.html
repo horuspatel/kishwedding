@@ -71,26 +71,26 @@
         .nav {
             position: absolute;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 20px;
             z-index: 10;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: flex-end; /* Align buttons to the right */
         }
         .nav a {
             color: #f40000;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 10px 0;
             font-size: 1.5em;
             font-weight: bold;
-            opacity: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
             padding: 10px 15px;
             background-color: #fff;
             border-radius: 5px;
-            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: auto; /* Prevent buttons from stretching */
+            text-align: center;
         }
         .nav a:hover {
             color: #fff;
@@ -106,18 +106,10 @@
             p {
                 font-size: 1.5em;
             }
-            .nav {
-                flex-direction: column; /* Stack buttons vertically */
-                align-items: center;
-                width: 100%;
-                bottom: 30px; /* Adjust position to avoid overlap */
-            }
             .nav a {
                 font-size: 1.2em;
-                margin: 10px 0;
-                padding: 12px 20px; /* Increase padding for touch targets */
-                width: 80%; /* Make buttons full-width on small screens */
-                text-align: center;
+                padding: 8px 12px;
+                width: auto; /* Keep buttons compact on mobile */
             }
             .content {
                 padding: 30px;
@@ -133,9 +125,8 @@
             }
             .nav a {
                 font-size: 1em;
-                margin: 10px 0;
-                padding: 12px 20px;
-                width: 90%; /* Make buttons even larger on very small screens */
+                padding: 8px 12px;
+                width: auto; /* Keep buttons compact on very small screens */
             }
             .content {
                 padding: 20px;
@@ -148,6 +139,7 @@
             }
             .nav {
                 bottom: 20px;
+                right: 20px;
             }
         }
     </style>
