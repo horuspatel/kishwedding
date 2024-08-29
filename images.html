@@ -31,8 +31,11 @@
         .menu-icon div {
             width: 100%;
             height: 4px;
-            background-color: black;
+            background-color: black; /* Start with black when menu is closed */
             transition: all 0.3s ease;
+        }
+        .menu-icon.open div {
+            background-color: white; /* Change to white when menu is open */
         }
         .menu-icon.open div:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
