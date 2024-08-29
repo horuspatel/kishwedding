@@ -53,6 +53,15 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            width: 90%; /* Adjust width */
+            max-width: 600px; /* Set a maximum width */
+        }
+        
+        @media (max-width: 480px) {
+            .content {
+                padding: 20px;
+                width: 95%; /* Slightly reduce width on very small screens */
+            }
         }
         h1 {
             font-size: 4em;
