@@ -195,65 +195,71 @@
 
     <!-- Tiny GIFs -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
-        gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
-        gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
-        gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
+            gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
+            gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
+            gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
+        
+            const menuIcon = document.getElementById('menuIcon');
+            const navMenu = document.getElementById('navMenu');
+        
+            menuIcon.addEventListener('click', () => {
+                menuIcon.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+        
+            function createGif() {
+                const gifElement = document.createElement('img');
+                gifElement.src = 'https://horuspatel.github.io/kishwedding/chickenwing.gif';
+                gifElement.className = 'tiny-gif';
+                gifElement.style.position = 'fixed'; // Ensure it's fixed so it moves with the page
+                gifElement.style.zIndex = 50; // Make sure it's above other elements
+                document.body.appendChild(gifElement);
+        
+                const offset = Math.random() * 100;
+        
+                gifElement.style.left = `-50px`;
+                gifElement.style.top = `${offset}vh`;
+        
+                gsap.to(gifElement, { opacity: 1, duration: 0.5, x: 60 });
+                gsap.to(gifElement, { opacity: 0, delay: 1.5, duration: 0.5, x: 120, onComplete: () => gifElement.remove() });
+            }
+        
+            function createImagePopUp() {
+                const imageElement = document.createElement('img');
+                imageElement.src = 'https://horuspatel.github.io/kishwedding/Images/Kerry_hair3.png';
+                imageElement.style.position = 'fixed';
+                imageElement.style.zIndex = '100';
+                imageElement.style.maxHeight = '20vh';
+                imageElement.style.right = '-30px';
+                imageElement.style.bottom = '-100px'; // Start just below the screen
+                imageElement.style.opacity = '1';
+                document.body.appendChild(imageElement);
 
-        const menuIcon = document.getElementById('menuIcon');
-        const navMenu = document.getElementById('navMenu');
-
-        menuIcon.addEventListener('click', () => {
-            menuIcon.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        });
-
-        function createGif() {
-            console.log("Creating a GIF");  // Debugging line
-            const gifElement = document.createElement('img');
-            gifElement.src = 'https://horuspatel.github.io/kishwedding/chickenwing.gif';
-            gifElement.className = 'tiny-gif';
-            document.body.appendChild(gifElement);
-
-            // Randomize position around the edges
-            const position = Math.floor(Math.random() * 4);
-            const offset = Math.random() * 100;
-
-            switch (position) {
-                case 0: // Top
-                    gifElement.style.top = `${offset}vh`;
-                    gifElement.style.left = `-50px`;
-                    break;
-                case 1: // Bottom
-                    gifElement.style.bottom = `${offset}vh`;
-                    gifElement.style.right = `-50px`;
-                    break;
-                case 2: // Left
-                    gifElement.style.left = `${offset}vw`;
-                    gifElement.style.top = `-50px`;
-                    break;
-                case 3: // Right
-                    gifElement.style.right = `${offset}vw`;
-                    gifElement.style.bottom = `-50px`;
-                    break;
+                // Bring the image up into view from the bottom
+                gsap.to(imageElement, { bottom: '-20px', duration: 3, ease: 'power2.out' }); // Slow pop up
+                gsap.to(imageElement, { delay: 4, duration: 1.5, bottom: '-100px', ease: 'power2.in', onComplete: () => imageElement.remove() }); // Slow disappearance
             }
 
-            // Animate GIF appearance and disappearance
-            gsap.to(gifElement, { opacity: 1, duration: 0.5, x: 60 });
-            gsap.to(gifElement, { opacity: 0, delay: 1.5, duration: 0.5, x: 120, onComplete: () => gifElement.remove() });
-        }
+            function startGifLoop() {
+                setInterval(() => {
+                    createGif();
+                }, 500);
 
-        // Function to continuously create GIFs
-        function startGifLoop() {
-            setInterval(() => {
-                createGif();
-            }, 500); // Creates a new GIF every 0.5 seconds
-        }
+                setInterval(() => {
+                    createImagePopUp();
+                }, 6000); // Creates a new image pop-in every 6 seconds
+            }
 
-        startGifLoop(); // Start the loop after initial animations
-    });
+            startGifLoop();
 
-    </script>
+        });
+        </script>
+                
+        
 </body>
 </html>
+
+
+<!-- https://horuspatel.github.io/kishwedding/Images/Kerry_hair.jpeg -->
