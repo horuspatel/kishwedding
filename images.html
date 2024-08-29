@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload and View Images</title>
+    <title>Wedding Photos</title>
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
     <style>
         body, html {
@@ -13,8 +13,7 @@
             background-color: rgba(240, 248, 255, 0.95); /* Almost white blue background color */
             color: #333;
             height: 100%;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
         }
         .menu-icon {
             position: fixed;
@@ -76,25 +75,51 @@
         .nav a:hover {
             color: #f40000;
         }
+        /* Hero section */
+        .hero {
+            width: 100%;
+            height: 200px;
+            background-image: url('https://horuspatel.github.io/kishwedding/Images/Hero_image.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0;
+            position: absolute;
+        }
         .upload-widget {
-            margin: 20px auto;
-            text-align: center;
+            width: 300px; /* Increased width */
+            padding: 15px; /* Added padding */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             z-index: 10;
             position: relative;
+            margin: 20px auto; /* Center the upload widget */
+            text-align: center;
+        }
+        .upload-widget h2 {
+            font-size: 1em; /* Reduced font size */
+            margin-bottom: 10px;
         }
         .container {
             padding: 20px;
+            padding-bottom: 60px; /* Extra padding at the bottom */
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 80vh;
             overflow-y: auto;
-            z-index: 10;
-            position: relative;
         }
         .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(4, 1fr); /* Maximum 4 images per row */
             grid-gap: 15px;
             width: 100%;
         }
@@ -104,6 +129,17 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             object-fit: cover;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr); /* 2 images per row on tablets */
+            }
+        }
+        @media (max-width: 480px) {
+            .image-gallery {
+                grid-template-columns: 1fr; /* 1 image per row on mobile */
+            }
         }
     </style>
 </head>
@@ -118,10 +154,16 @@
 <div class="nav" id="navMenu">
     <a href="index.html" id="homeLink">Home</a>
     <a href="gift.html" id="giftLink">Our Gift</a>
-    <a href="images.html" id="imagesLink">Upload Images</a> <!-- Current Page Link -->
+    <a href="wedding-photos.html" id="imagesLink">Wedding Photos</a> 
+    <a href="images.html" id="imagesLink">Random Photos</a> <!-- Current Page Link -->
+</div>
+
+<div class="hero">
+    <h1>Wedding Photos</h1>
 </div>
 
 <div class="upload-widget">
+    <h2>Upload your pictures from the day</h2>
     <input type="hidden" id="uploadcare-uploader" role="uploadcare-uploader" data-public-key="8408c4c77a7b4868e631" data-images-only />
 </div>
 
