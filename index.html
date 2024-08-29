@@ -126,6 +126,14 @@
         .nav a:hover {
             color: #f40000;
         }
+        .tiny-gif {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            z-index: 9999; /* Ensure GIFs are on top */
+        }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -181,68 +189,71 @@
     <div class="nav" id="navMenu">
         <a href="#" id="homeLink">Home</a>
         <a href="gift.html" id="giftLink">Our Gift</a>
-        <a href="images.html" id="imagesLink">Upload Images</a>
+        <a href="wedding-photos.html" id="imagesLink">Wedding Photos</a>
+        <a href="images.html" id="imagesLink">Random Photos</a>
     </div>
 
     <!-- Tiny GIFs -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
-            gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
-            gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
-            gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
+    document.addEventListener('DOMContentLoaded', () => {
+        gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
+        gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
+        gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
+        gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
 
-            const menuIcon = document.getElementById('menuIcon');
-            const navMenu = document.getElementById('navMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const navMenu = document.getElementById('navMenu');
 
-            menuIcon.addEventListener('click', () => {
-                menuIcon.classList.toggle('open');
-                navMenu.classList.toggle('open');
-            });
-
-            function createGif() {
-                const gifElement = document.createElement('img');
-                gifElement.src = 'https://horuspatel.github.io/kishwedding/chickenwing.gif';
-                gifElement.className = 'tiny-gif';
-                document.body.appendChild(gifElement);
-
-                // Randomize position around the edges
-                const position = Math.floor(Math.random() * 4);
-                const offset = Math.random() * 100;
-
-                switch (position) {
-                    case 0: // Top
-                        gifElement.style.top = `${offset}vh`;
-                        gifElement.style.left = `-50px`;
-                        break;
-                    case 1: // Bottom
-                        gifElement.style.bottom = `${offset}vh`;
-                        gifElement.style.right = `-50px`;
-                        break;
-                    case 2: // Left
-                        gifElement.style.left = `${offset}vw`;
-                        gifElement.style.top = `-50px`;
-                        break;
-                    case 3: // Right
-                        gifElement.style.right = `${offset}vw`;
-                        gifElement.style.bottom = `-50px`;
-                        break;
-                }
-
-                // Animate GIF appearance and disappearance
-                gsap.to(gifElement, { opacity: 1, duration: 0.5, x: 60 });
-                gsap.to(gifElement, { opacity: 0, delay: 1.5, duration: 0.5, x: 120, onComplete: () => gifElement.remove() });
-            }
-
-            // Function to continuously create GIFs
-            function startGifLoop() {
-                setInterval(() => {
-                    createGif();
-                }, 500); // Creates a new GIF every 0.5 seconds
-            }
-
-            startGifLoop(); // Start the loop after initial animations
+        menuIcon.addEventListener('click', () => {
+            menuIcon.classList.toggle('open');
+            navMenu.classList.toggle('open');
         });
+
+        function createGif() {
+            console.log("Creating a GIF");  // Debugging line
+            const gifElement = document.createElement('img');
+            gifElement.src = 'https://horuspatel.github.io/kishwedding/chickenwing.gif';
+            gifElement.className = 'tiny-gif';
+            document.body.appendChild(gifElement);
+
+            // Randomize position around the edges
+            const position = Math.floor(Math.random() * 4);
+            const offset = Math.random() * 100;
+
+            switch (position) {
+                case 0: // Top
+                    gifElement.style.top = `${offset}vh`;
+                    gifElement.style.left = `-50px`;
+                    break;
+                case 1: // Bottom
+                    gifElement.style.bottom = `${offset}vh`;
+                    gifElement.style.right = `-50px`;
+                    break;
+                case 2: // Left
+                    gifElement.style.left = `${offset}vw`;
+                    gifElement.style.top = `-50px`;
+                    break;
+                case 3: // Right
+                    gifElement.style.right = `${offset}vw`;
+                    gifElement.style.bottom = `-50px`;
+                    break;
+            }
+
+            // Animate GIF appearance and disappearance
+            gsap.to(gifElement, { opacity: 1, duration: 0.5, x: 60 });
+            gsap.to(gifElement, { opacity: 0, delay: 1.5, duration: 0.5, x: 120, onComplete: () => gifElement.remove() });
+        }
+
+        // Function to continuously create GIFs
+        function startGifLoop() {
+            setInterval(() => {
+                createGif();
+            }, 500); // Creates a new GIF every 0.5 seconds
+        }
+
+        startGifLoop(); // Start the loop after initial animations
+    });
+
     </script>
 </body>
 </html>
