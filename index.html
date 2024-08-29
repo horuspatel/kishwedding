@@ -103,7 +103,7 @@
             width: 200px;
             background-color: rgba(0, 0, 0, 0.9);
             padding-top: 60px;
-            transform: translateX(0); /* Default to open */
+            transform: translateX(100%); /* Default to closed */
             transition: transform 0.3s ease;
             z-index: 99;
             display: flex;
@@ -111,8 +111,8 @@
             align-items: flex-start;
             padding-left: 20px;
         }
-        .nav.closed {
-            transform: translateX(100%); /* Slide out when closed */
+        .nav.open {
+            transform: translateX(0); /* Slide in when open */
         }
         .nav a {
             color: #fff;
@@ -172,7 +172,7 @@
         <p>They're FINALLY Getting Married!</p>
         <p>30th August 2024</p>
     </div>
-    <div class="menu-icon open" id="menuIcon">
+    <div class="menu-icon" id="menuIcon">
         <div></div>
         <div></div>
         <div></div>
@@ -196,7 +196,7 @@
 
             menuIcon.addEventListener('click', () => {
                 menuIcon.classList.toggle('open');
-                navMenu.classList.toggle('closed');
+                navMenu.classList.toggle('open');
             });
 
             function createGif() {
