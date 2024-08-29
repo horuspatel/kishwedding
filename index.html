@@ -74,6 +74,9 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .nav a {
             color: #f40000;
@@ -87,19 +90,12 @@
             padding: 10px 15px;
             background-color: #fff;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         .nav a:hover {
             color: #fff;
             background-color: #f40000;
             text-shadow: none;
-        }
-        /* Style for tiny GIFs */
-        .tiny-gif {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            opacity: 0;
-            z-index: 5;
         }
 
         /* Responsive Design */
@@ -110,10 +106,18 @@
             p {
                 font-size: 1.5em;
             }
+            .nav {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: center;
+                width: 100%;
+                bottom: 30px; /* Adjust position to avoid overlap */
+            }
             .nav a {
                 font-size: 1.2em;
-                margin: 0 10px;
-                padding: 8px 12px;
+                margin: 10px 0;
+                padding: 12px 20px; /* Increase padding for touch targets */
+                width: 80%; /* Make buttons full-width on small screens */
+                text-align: center;
             }
             .content {
                 padding: 30px;
@@ -129,8 +133,9 @@
             }
             .nav a {
                 font-size: 1em;
-                margin: 0 5px;
-                padding: 6px 10px;
+                margin: 10px 0;
+                padding: 12px 20px;
+                width: 90%; /* Make buttons even larger on very small screens */
             }
             .content {
                 padding: 20px;
@@ -142,7 +147,7 @@
                 height: 50%;
             }
             .nav {
-                bottom: 10px;
+                bottom: 20px;
             }
         }
     </style>
@@ -164,7 +169,7 @@
     <div class="nav">
         <a href="#" id="homeLink">Home</a>
         <a href="gift.html" id="giftLink">Our Gift</a>
-        <a href="images.html" id="imagesLink">Images</a> <!-- New Link for Images Page -->
+        <a href="images.html" id="imagesLink">View Images</a> <!-- New Link for Images Page -->
     </div>
 
     <!-- Tiny GIFs -->
