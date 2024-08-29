@@ -130,6 +130,21 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             object-fit: cover;
         }
+        /* Audio control */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .audio-control img {
+            width: 30px;
+            height: 30px;
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .image-gallery {
@@ -170,6 +185,15 @@
 <div class="container">
     <div id="image-gallery" class="image-gallery"></div>
 </div>
+
+<div class="audio-control" id="audioControl">
+    <img src="./images/play.png" alt="Toggle Audio">
+</div>
+
+<audio id="backgroundAudio" loop>
+    <source src="letsgetmarried.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <script>
     const menuIcon = document.getElementById('menuIcon');
@@ -227,6 +251,25 @@
 
     // Fetch images on page load
     fetchImages();
+
+    // Audio control functionality
+    const audio = document.getElementById('backgroundAudio');
+    const audioControl = document.getElementById('audioControl');
+    const audioIcon = audioControl.querySelector('img');
+
+    audio.play().catch(() => {
+        console.log('Autoplay was prevented.');
+    });
+
+    audioControl.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            audioIcon.src = './images/play.png'; // Replace with the path to your "audio on" icon
+        } else {
+            audio.pause();
+            audioIcon.src = './images/stop.png'; // Replace with the path to your "audio off" icon
+        }
+    });
 </script>
 
 </body>
