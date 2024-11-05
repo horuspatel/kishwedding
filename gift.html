@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Gift - Therme București</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        .header {
+            background-image: url('https://thumbs.dreamstime.com/b/therme-bucharest-palm-zone-night-therme-bucharest-palm-zone-night-indoor-pool-thermal-water-colorful-lights-136313847.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            position: relative;
+        }
+        .header h1 {
+            font-size: 4em;
+            text-align: center;
+            margin: 0;
+        }
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+        }
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .menu-icon.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-icon.open div:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-icon.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        .nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding-top: 60px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        .nav.open {
+            transform: translateX(0);
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav a:hover {
+            color: #f40000;
+        }
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .content h2 {
+            font-size: 2.5em;
+            color: #f40000;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .gift-details {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .gift-details div {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 45%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: #f40000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3em;
+            }
+            .content h2 {
+                font-size: 2em;
+            }
+            .content p {
+                font-size: 1.1em;
+            }
+            .gift-details div {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            .content h2 {
+                font-size: 1.8em;
+            }
+            .content p {
+                font-size: 1em;
+            }
+            .image-gallery img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>A Luxurious 3-Day Spa Retreat</h1>
+        <div class="menu-icon" id="menuIcon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Relax, Rejuvenate, and Rediscover Tranquility</h2>
+        <p>
+            We are thrilled to gift you an unforgettable experience at Therme București, Europe's largest and most luxurious thermal spa. Located just outside Bucharest, this sprawling oasis offers the perfect blend of relaxation, wellness, and indulgence.
+        </p>
+        <div class="image-gallery">
+            <img src="https://s.inyourpocket.com/gallery/148035.jpg" alt="The Palm Zone at Therme București">
+            <img src="https://europespa.eu/fileadmin/_processed_/c/4/csm__DSC5886a1_57828979c5.jpg" alt="Elysium Zone at Therme București">
+            <img src="https://photos.pandatur.md/be02872649e3570e7f26f71552b89b57.jpg" alt="Therme București Outdoor View">
+        </div>
+        <p>
+            Your journey begins in The Palm zone, a tropical paradise where you can unwind in a large thermal pool surrounded by lush vegetation. Enjoy mineral pools, jacuzzis, and a variety of saunas designed to rejuvenate your body and mind.
+        </p>
+        <p>
+            For the ultimate relaxation, explore the Elysium zone, featuring themed saunas, a mineral pool with a bar, and exclusive wellness treatments. Whether it’s a LaStone massage or an aroma therapy session, this area is all about luxurious relaxation.
+        </p>
+        <div class="gift-details">
+            <div>
+                <h3>£310 Towards Flights</h3>
+                <p>
+                    We’ve contributed £310 towards your flights, ensuring a comfortable journey to Bucharest.
+                </p>
+            </div>
+            <div>
+                <h3>£400 Spending Money</h3>
+                <p>
+                    You’ll also receive £400 to use at the spa, whether it’s for treatments, dining, or additional experiences.
+                </p>
+            </div>
+        </div>
+        <p>
+            Therme București is not just a spa; it’s an experience. With 10 indoor and outdoor pools, 16 water slides, 10 saunas, and a botanical garden featuring over 800,000 plants, this is a destination like no other.
+        </p>
+    </div>
+    <div class="footer">
+        <p><strong>Disclaimer:</strong><br>
+        While we’ve carefully planned this luxurious spa retreat for you at Therme București, please note this is just a concept. If soaking in thermal pools surrounded by palm trees isn't your vibe, feel free to use the flight money and cash for whatever you like—you could get a flight from Heathrow to Gatwick and buy 404 chicken wings!</p>
+    </div>
+    <div class="nav" id="navMenu">
+        <a href="index.html" id="homeLink">Home</a>
+        <a href="gift.html" id="giftLink">Our Gift</a> <!-- Current Page Link -->
+        <a href="wedding-photos.html" id="imagesLink">Wedding Photos</a>
+        <a href="images.html" id="imagesLink">Random Photos</a>
+
+    </div>
+
+    <script>
+        const menuIcon = document.getElementById('menuIcon');
+        const navMenu = document.getElementById('navMenu');
+
+        menuIcon.addEventListener('click', () => {
+            menuIcon.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

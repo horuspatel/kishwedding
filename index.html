@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Congrats Kish & Kerry</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            overflow: hidden;
+            background-color: #fff;
+            position: relative;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+        }
+        .image-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-left, .image-right {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+        }
+        .image-left {
+            left: -100%;
+            background-image: url('Kish.jpg');
+        }
+        .image-right {
+            right: -100%;
+            background-image: url('Kerry.jpg');
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            width: 90%; /* Adjust width */
+            max-width: 600px; /* Set a maximum width */
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 20px;
+                width: 95%; /* Slightly reduce width on very small screens */
+            }
+        }
+        h1 {
+            font-size: 4em;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            color: #f40000;
+        }
+        p {
+            font-size: 2em;
+            margin-bottom: 1em;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            color: #fff;
+        }
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+        }
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .menu-icon.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-icon.open div:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-icon.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        .nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding-top: 60px;
+            transform: translateX(100%); /* Default to closed */
+            transition: transform 0.3s ease;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        .nav.open {
+            transform: translateX(0); /* Slide in when open */
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav a:hover {
+            color: #f40000;
+        }
+        .tiny-gif {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            z-index: 9999; /* Ensure GIFs are on top */
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+            p {
+                font-size: 1.5em;
+            }
+            .content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .content {
+                padding: 20px;
+            }
+            .container {
+                flex-direction: column;
+            }
+            .image-container {
+                height: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <div class="image-left"></div>
+        </div>
+        <div class="image-container">
+            <div class="image-right"></div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Kish & Kerry</h1>
+        <p>They're FINALLY Getting Married!</p>
+        <p>30th August 2024</p>
+    </div>
+    <div class="menu-icon" id="menuIcon">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="nav" id="navMenu">
+        <a href="#" id="homeLink">Home</a>
+        <a href="gift.html" id="giftLink">Our Gift</a>
+        <a href="wedding-photos.html" id="imagesLink">Wedding Photos</a>
+        <a href="images.html" id="imagesLink">Random Photos</a>
+    </div>
+
+    <!-- Tiny GIFs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.image-left', { left: 0, duration: 2, ease: 'power2.out' });
+            gsap.to('.image-right', { right: 0, duration: 2, ease: 'power2.out' });
+            gsap.to('.content', { opacity: 1, delay: 1.5, duration: 1 });
+            gsap.to('.nav a', { opacity: 1, delay: 2, duration: 1, stagger: 0.2 });
+    
+            const menuIcon = document.getElementById('menuIcon');
+            const navMenu = document.getElementById('navMenu');
+    
+            menuIcon.addEventListener('click', () => {
+                menuIcon.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+    
+            function createGif() {
+                const gifElement = document.createElement('img');
+                gifElement.src = 'chickenwing.gif';
+                gifElement.className = 'tiny-gif';
+                gifElement.style.position = 'fixed';
+                gifElement.style.zIndex = 50;
+                document.body.appendChild(gifElement);
+    
+                const offset = Math.random() * 100;
+    
+                gifElement.style.left = `-50px`;
+                gifElement.style.top = `${offset}vh`;
+    
+                gsap.to(gifElement, { opacity: 1, duration: 0.5, x: 60 });
+                gsap.to(gifElement, { opacity: 0, delay: 1.5, duration: 0.5, x: 120, onComplete: () => gifElement.remove() });
+            }
+    
+            function createImagePopUpRight() {
+                const imageElement = document.createElement('img');
+                imageElement.src = './Images/Kerry_hair3.png';
+                imageElement.style.position = 'fixed';
+                imageElement.style.zIndex = '100';
+                imageElement.style.maxHeight = '20vh';
+                imageElement.style.right = '-30px';
+                imageElement.style.bottom = '-100px';
+                imageElement.style.opacity = '1';
+                document.body.appendChild(imageElement);
+    
+                gsap.to(imageElement, { bottom: '-20px', duration: 3, ease: 'power2.out' });
+                gsap.to(imageElement, { delay: 4, duration: 1.5, bottom: '-100px', ease: 'power2.in', onComplete: () => imageElement.remove() });
+            }
+    
+            function createImagePopUpLeft() {
+                const imageElement = document.createElement('img');
+                imageElement.src = './Images/Jameson.png';
+                imageElement.style.position = 'fixed';
+                imageElement.style.zIndex = '100';
+                imageElement.style.maxHeight = '20vh';
+                imageElement.style.left = '-30px';
+                imageElement.style.bottom = '-100px';
+                imageElement.style.opacity = '1';
+                document.body.appendChild(imageElement);
+    
+                gsap.to(imageElement, { bottom: '-20px', duration: 3, ease: 'power2.out' });
+                gsap.to(imageElement, { delay: 3, duration: 1.5, bottom: '-100px', ease: 'power2.in', onComplete: () => imageElement.remove() });
+            }
+    
+            function addStaticGif() {
+                const staticGif = document.createElement('img');
+                staticGif.src = './Images/Horse.gif'; // Replace with your static GIF URL
+                staticGif.style.position = 'fixed';
+                staticGif.style.zIndex = '100';
+                staticGif.style.right = '80px';
+                staticGif.style.bottom = '10px';
+                staticGif.style.width = '100px';
+                document.body.appendChild(staticGif);
+            }
+    
+            function startGifLoop() {
+                setInterval(() => {
+                    createGif();
+                }, 2000);
+    
+                setInterval(() => {
+                    createImagePopUpRight();
+                }, 6000);
+    
+                setInterval(() => {
+                    createImagePopUpLeft();
+                }, 5000);
+    
+                addStaticGif();
+            }
+    
+            startGifLoop();
+    
+        });
+    </script>
+    
+                
+        
+</body>
+</html>
+
